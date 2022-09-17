@@ -16,13 +16,7 @@ Before you start, learn more about Maximo WebSphere Liberty support from the off
 | DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | CNB8FML     | IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
 | MAMMTFP7612IMRepo.zip                    | -           | IBM Maximo Asset Management V7.6.1 Feature pack 2 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
 | v11.1.4fp5_linuxx64_server_t.tar.gz      | -           | IBM Db2 Server V11.1 Fix Pack 5 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
-
-
-
-  IBM WebSphere Liberty Network Deployment license V9 binaries:
-
-  - wlp-nd-license.jar
-
+| wlp-nd-license.jar                       | CND1QML     | IBM WebSphere Application Server Liberty Network Deployment License Upgrade| [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html) |
 
 
 ## Building IBM Maximo Asset Management V7.6.1 with Liberty image by using a build tool.
