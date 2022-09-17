@@ -10,21 +10,21 @@ Before you start, learn more about Maximo WebSphere Liberty support from the off
 
 - IBM Installation Manager binaries from [Installation Manager 1.8 download documents](http://www-01.ibm.com/support/docview.wss?uid=swg24037640)
 
-  IBM Enterprise Deployment (formerly known as IBM Installation Manager) binaries:
+  CND0ZML - IBM Installation Manager V1.8.5 for Linux x86_64:
 
-  - IED_V1.8.8_Wins_Linux_86.zip
+  - agent.installer.lnx.gtk.x86_64_1.8.5.zip
 
 - IBM Maximo Asset Management V7.6.1 binaries from [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)
 
-  IBM Maximo Asset Management V7.6.1 binaries:
+  CNVK0ML - IBM Maximo Asset Management V7.6.1 Linux 64 Multilingual:
 
-  - MAM_7.6.1_LINUX64.tar.gz
+  - MAM_7.6.1.0_LINUX64.tar.gz
 
   IBM WebSphere Liberty Network Deployment license V9 binaries:
 
   - wlp-nd-license.jar
 
-  IBM Db2 Advanced Workgroup Edition V11.1 binaries:
+  CNB8FML	- IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel
 
   - DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz
 
