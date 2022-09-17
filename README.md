@@ -8,35 +8,22 @@ Before you start, learn more about Maximo WebSphere Liberty support from the off
 
 ## Required packages.
 
-- IBM Installation Manager binaries from [Installation Manager 1.8 download documents](http://www-01.ibm.com/support/docview.wss?uid=swg24037640)
 
-  CND0ZML - IBM Installation Manager V1.8.5 for Linux x86_64:
+| Filename                | Part Number         | Package          |           Description                                        |
+|-------------------------------|----------------|----------------|--------------------------------------------------------------|
+| agent.installer.lnx.gtk.x86_64_1.8.5.zip | CND0ZML | IBM Installation Manager V1.8.5 for Linux x86_64      | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html) |
+| MAM_7.6.1.0_LINUX64.tar.gz  | CNVK0ML | IBM Maximo Asset Management V7.6.1 Linux 64 Multilingual      | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
+| DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz | CNB8FML     | IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
+| MAMMTFP7612IMRepo.zip | -  | IBM Maximo Asset Management V7.6.1 Feature pack 2 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
+| v11.1.4fp5_linuxx64_server_t.tar.gz | -  | IBM Db2 Server V11.1 Fix Pack 5 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
 
-  - agent.installer.lnx.gtk.x86_64_1.8.5.zip
 
-- IBM Maximo Asset Management V7.6.1 binaries from [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)
-
-  CNVK0ML - IBM Maximo Asset Management V7.6.1 Linux 64 Multilingual:
-
-  - MAM_7.6.1.0_LINUX64.tar.gz
 
   IBM WebSphere Liberty Network Deployment license V9 binaries:
 
   - wlp-nd-license.jar
 
-  CNB8FML	- IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel
 
-  - DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz
-
-- Feature Pack/Fix Pack binaries from [Fix Central](http://www-945.ibm.com/support/fixcentral/)
-
-  IBM Maximo Asset Management V7.6.1 Feature pack 2 binary:
-
-  - MAMMTFP7612IMRepo.zip
-
-  IBM Db2 Server V11.1 Fix Pack 5
-
-  - v11.1.4fp5_linuxx64_server_t.tar.gz
 
 ## Building IBM Maximo Asset Management V7.6.1 with Liberty image by using a build tool.
 
