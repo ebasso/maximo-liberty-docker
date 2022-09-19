@@ -17,7 +17,7 @@ FROM ${namespace}/images:${buildver}
 
 FROM ${base_maximo_build}
 
-LABEL maintainer="nishi2go@gmail.com"
+LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 ARG update_im=no
 ARG fp=2
@@ -53,10 +53,10 @@ ENV TEMP /tmp
 WORKDIR /tmp
 
 USER root
-# Install IBM Installation Manager 1.8.8
+# Install IBM Installation Manager - agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
 RUN mkdir /Install_Mgr 
 COPY --from=0 /Install_Mgr /Install_Mgr/
-RUN /Install_Mgr/EnterpriseDVD/Linux_x86_64/EnterpriseCD-Linux-x86_64/InstallationManager/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
+RUN /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
     && rm -rf /Install_Mgr
 
 ## Update Installation Manager
