@@ -11,7 +11,7 @@
 # limitations under the License.
 FROM busybox
 
-LABEL maintainer="nishi2go@gmail.com"
+LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 RUN mkdir /images
 WORKDIR /images
@@ -36,10 +36,10 @@ RUN mkdir /db2 && tar zxpf /images/${DB2_IMAGE} -C /db2
 RUN mkdir /db2fp && tar zxpf /images/${DB2_FP_IMAGE} -C /db2fp
 
 # Unpack the IIM packages
-ARG im_image=IED_V1.8.8_Wins_Linux_86.zip
+ARG im_image=agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
 RUN mkdir /Install_Mgr && unzip -q ${im_image} -d /Install_Mgr
 
-ARG mam_image=MAM_7.6.1_LINUX64.tar.gz
+ARG mam_image=MAM_7.6.1.0_LINUX64.tar.gz
 ARG mam_fp=2
 ARG mam_fp_image=MAMMTFP761${mam_fp}IMRepo.zip
 
