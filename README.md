@@ -6,7 +6,7 @@ Maximo with Liberty on Docker enables to run Maximo Asset Management with WebSph
 
 Before you start, learn more about Maximo WebSphere Liberty support from the official documentation. [Maximo Asset Management 7.6.1 WebSphere Liberty Support](https://www.ibm.com/support/pages/node/572105)
 
-![Componets of Docker Images](https://raw.githubusercontent.com/nishi2go/maximo-liberty-docker/master/maximo-liberty-docker.svg?sanitize=true)
+![Components of Docker Images](https://raw.githubusercontent.com/ebasso/maximo-liberty-docker/docs/maximo-liberty-docker.svg?sanitize=true)
 
 ## Required packages.
 
@@ -34,7 +34,7 @@ Build Maximo Docker containers.
 
 -r  | --remove                    Remove images when an image exists in repository.
 -R  | --remove-only               Remove images without building when an image exists in repository.
--rt | --remove-latest-tag         Do not add the "letest" tag to the built images.
+-rt | --remove-latest-tag         Do not add the "latest" tag to the built images.
 -c  | --use-custom-image          Build a custom image for Maximo installation container.
 -v  | --verbose                   Show detailed output of the docker build.
 -p  | --prune                     Remove intermediate multi-stage builds automatically.
