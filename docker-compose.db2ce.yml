@@ -11,7 +11,7 @@ services:
       - "DBNAME=MAXDB76"
     networks:
       - backend
-     ports:
+    ports:
        - "${ENV_MAXDB_SERVICE_PORT}:${ENV_MAXDB_SERVICE_PORT}"
     volumes:
       - type: volume
