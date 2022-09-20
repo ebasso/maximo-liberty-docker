@@ -24,19 +24,27 @@ mkdir /mybackup
 
 cd /mybackup
 
-tar -cvf /mybackup/maximo-liberty-docker-7612.tar /maximo-liberty-docker
+tar --exclude="/maximo-liberty-docker/images/*.zip" --exclude="/maximo-liberty-docker/images/*.gz" --exclude="/maximo-liberty-docker/images/*.jar" -czvf maximo-liberty-docker.tgz /maximo-liberty-docker 
 ```
 
 Backup containers and gzip files
 
 ```bash
-docker save -o maximo-liberty-mea-7612.tar             maximo-liberty/maximo-mea:7.6.1.2
-docker save -o maximo-liberty-report-7612.tar      maximo-liberty/maximo-report:7.6.1.2
-docker save -o maximo-liberty-api-7612.tar             maximo-liberty/maximo-api:7.6.1.2
-docker save -o maximo-liberty-cron-7612.tar        maximo-liberty/maximo-cron:7.6.1.2
-docker save -o maximo-liberty-ui-7612.tar              maximo-liberty/maximo-ui:7.6.1.2
+docker save -o maximo-liberty-mea-7612.tar     maximo-liberty/maximo-mea:7.6.1.2
+docker save -o maximo-liberty-report-7612.tar  maximo-liberty/maximo-report:7.6.1.2
+docker save -o maximo-liberty-api-7612.tar     maximo-liberty/maximo-api:7.6.1.2
+docker save -o maximo-liberty-cron-7612.tar    maximo-liberty/maximo-cron:7.6.1.2
+docker save -o maximo-liberty-ui-7612.tar      maximo-liberty/maximo-ui:7.6.1.2
 
-gzip *
+docker save -o maximo-liberty-jmsserver-7612.tar  maximo-liberty/jmsserver:20.0.0.3-kernel-java8-ibmjava
+docker save -o maximo-liberty-liberty-7612.tar 	  maximo-liberty/liberty:20.0.0.3-kernel-java8-ibmjava
+
+docker save -o maximo-liberty-db2-7612.tar 	       maximo-liberty/db2:7.6.1.2
+docker save -o maximo-liberty-maximo-7612.tar 	   maximo-liberty/maximo:7.6.1.2
+docker save -o maximo-liberty-images-7612.tar      maximo-liberty/images:7.6.1.2
+docker save -o maximo-liberty-db2-intermediate-7612.tar  maximo-liberty/db2-intermediate     7.6.1.2
+
+gzip *.tar
 ```
 
 ## Restore images
