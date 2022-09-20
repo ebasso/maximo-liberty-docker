@@ -52,5 +52,4 @@ docker load --input maximo-liberty-report-7612.tar
 docker load --input maximo-liberty-api-7612.tar
 docker load --input maximo-liberty-cron-7612.tar
 docker load --input maximo-liberty-ui-7612.tar
-
-```bash
+```
