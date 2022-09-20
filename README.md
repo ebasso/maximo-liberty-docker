@@ -15,8 +15,8 @@ Before you start, learn more about Maximo WebSphere Liberty support from the off
 |------------------------------------------|-------------|------------------|--------------------------------------------------------------|
 | agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip | -     | IBM Installation Manager V1.8.5 for Linux x86_64      | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
 | MAM_7.6.1.0_LINUX64.tar.gz               | CNVK0ML     | IBM Maximo Asset Management V7.6.1 Linux 64 Multilingual      | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
-| DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | CNB8FML     | IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
 | MAMMTFP7612IMRepo.zip                    | -           | IBM Maximo Asset Management V7.6.1 Feature pack 2 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
+| DB2_AWSE_REST_Svr_11.1_Lnx_86-64.tar.gz  | CNB8FML     | IBM DB2 Advanced Workgroup Server Edition Server Restricted Use V11.1 for Linux on AMD64 and Intel | [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html)  |
 | v11.1.4fp7_linuxx64_server_t.tar.gz      | -           | IBM Db2 Server V11.1 Fix Pack 5 | [Fix Central](http://www-945.ibm.com/support/fixcentral/)  |
 | wlp-nd-license.jar                       | CND1QML     | IBM WebSphere Application Server Liberty Network Deployment License Upgrade| [Passport Advantage](http://www-01.ibm.com/software/passportadvantage/pao_customer.html) |
 
@@ -81,19 +81,27 @@ Procedures:
    Note: This script works on Windows Subsystem on Linux.
 
 4. Edit `docker-compose.yml` to enable optional services e.g. maximo-api, maximo-report and etc.
+
 5. Run containers by using the Docker Compose file to create and deploy instances:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
    To scale servers with the `docker-compose --scale` option:
    ```bash
-   docker-compose up -d --scale maximo-ui=2
+   docker compose up -d --scale maximo-ui=2
    ```
 6. Make sure to be accessible to Maximo login page: http://hostname/maximo
 
-## How to deploy Maximo on Kuberenetes
+7. Stop containers by using the Docker Compose file:
+   ```bash
+   docker compose down
+   ```
 
-See the [Maximo on Kubernetes](https://github.com/nishi2go/maximo-liberty-docker/blob/master/kubernetes/README.md) document.
+## Articles
+
+* [How to Backup/Restore your Docker Images](docs/backup-your-docker-images.md) 
+
+* [How to deploy Maximo on Kubernetes](kubernetes/README.md) document.
 
 ## How to use a custom build image.
 
