@@ -6,7 +6,7 @@ Maximo with Liberty on Docker enables to run Maximo Asset Management with WebSph
 
 Before you start, learn more about Maximo WebSphere Liberty support from the official documentation. [Maximo Asset Management 7.6.1 WebSphere Liberty Support](https://www.ibm.com/support/pages/node/572105)
 
-![Components of Docker Images](https://raw.githubusercontent.com/ebasso/maximo-liberty-docker/docs/maximo-liberty-docker.svg?sanitize=true)
+![Components of Docker Images](docs/maximo-liberty-docker.svg) 
 
 ## Required packages.
 
