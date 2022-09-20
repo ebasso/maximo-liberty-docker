@@ -20,3 +20,12 @@ services:
       # - type: bind
       #   source: ./backup
       #   target: /backup
+
+
+networks:
+  frontend:
+  backend:
+volumes:
+  maxdb76:
+  # Shared directory for liberty deployment files
+  maximo:
