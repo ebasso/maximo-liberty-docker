@@ -1,6 +1,10 @@
 # Docker images for IBM Maximo Asset Management V7.6.1 with Liberty.
 
-This repository makes some updates over the nish2go repository.
+** This repository makes some updates over the Yasutaka Nishimura (nish2go) repository. All credits goes to nishi2go!!!
+
+** What is new?
+* IBM Installation Manager 1.9, IBM DB2 11.1.4.7.
+* New image: IBM WebSphere Liberty 22.0.0.9
 
 Maximo with Liberty on Docker enables to run Maximo Asset Management with WebSphere Liberty on Docker. The images are deployed fine-grained services instead of a single instance. The following instructions describe how to set up IBM Maximo Asset Management V7.6 Docker images. These images consist of several components e.g. WebSphere Liberty, Db2, and Maximo installation program.
 

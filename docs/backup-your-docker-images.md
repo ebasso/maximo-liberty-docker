@@ -36,8 +36,8 @@ docker save -o maximo-liberty-api-7612.tar     maximo-liberty/maximo-api:7.6.1.2
 docker save -o maximo-liberty-cron-7612.tar    maximo-liberty/maximo-cron:7.6.1.2
 docker save -o maximo-liberty-ui-7612.tar      maximo-liberty/maximo-ui:7.6.1.2
 
-docker save -o maximo-liberty-jmsserver-7612.tar  maximo-liberty/jmsserver:20.0.0.3-kernel-java8-ibmjava
-docker save -o maximo-liberty-liberty-7612.tar 	  maximo-liberty/liberty:20.0.0.3-kernel-java8-ibmjava
+docker save -o maximo-liberty-jmsserver-7612.tar  maximo-liberty/jmsserver:22.0.0.9-kernel-java8-ibmjava
+docker save -o maximo-liberty-liberty-7612.tar 	  maximo-liberty/liberty:22.0.0.9-kernel-java8-ibmjava
 
 docker save -o maximo-liberty-db2-7612.tar 	       maximo-liberty/db2:7.6.1.2
 docker save -o maximo-liberty-maximo-7612.tar 	   maximo-liberty/maximo:7.6.1.2
