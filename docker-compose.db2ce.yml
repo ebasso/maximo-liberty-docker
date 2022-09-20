@@ -7,7 +7,7 @@ services:
     environment:
       - "LICENSE=accept"
       - "DB2INSTANCE=ctginst1"
-      - "DB2INST1_PASSWORD=${ENV_DB_MAXIMO_PASSWORD}"
+      - "CTGINST1_PASSWORD=${ENV_DB_MAXIMO_PASSWORD}"
       - "DBNAME=MAXDB76"
     networks:
       - backend
@@ -15,8 +15,8 @@ services:
        - "${ENV_MAXDB_SERVICE_PORT}:${ENV_MAXDB_SERVICE_PORT}"
     volumes:
       - type: volume
-        source: maxdb76
-        target: /home/ctginst1/ctginst1
+        source: ./database
+        target: /database
       # - type: bind
       #   source: ./backup
       #   target: /backup
