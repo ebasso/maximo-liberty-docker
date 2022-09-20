@@ -10,13 +10,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ARG buildver=7.6.1.2
-ARG libertyver=20.0.0.3-kernel-java8-ibmjava
+ARG libertyver=22.0.0.9-kernel-java8-ibmjava
 ARG namespace=maximo-liberty
 
 FROM ${namespace}/maximo:${buildver}
 FROM ${namespace}/liberty:${libertyver}
 
-LABEL maintainer="nishi2go@gmail.com"
+LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 ARG maximoapp=maximo-ui
 

@@ -9,11 +9,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ARG libertyver=20.0.0.3-kernel-java8-ibmjava
+ARG libertyver=22.0.0.9-kernel-java8-ibmjava
 ARG namespace=maximo-liberty
 
 FROM ${namespace}/liberty:${libertyver}
-LABEL maintainer="nishi2go@gmail.com"
+
+LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 ENV JMS_SERVER_PORT 9011
 ENV JMS_SERVER_SSL_PORT 19011
