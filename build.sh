@@ -209,7 +209,7 @@ fi
 
 # Build IBM Db2 Advanced Workgroup Edition image
 if [[ ${SKIP_DB} -eq 0 ]]; then
-  build "db2images" "${MAXIMO_VER}" "images" "DB2 Docker image Container" "--file Dockerfile.db2"
+  build "db2images" "${MAXIMO_VER}" "images" "DB2 Docker image Container" "--file images/Dockerfile.db2"
   build "db2-intermediate" "${MAXIMO_VER}" "db2" "IBM Db2 Advanced Workgroup Server Edition - Intermediate image"
 fi
 
