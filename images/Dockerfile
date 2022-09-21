@@ -24,8 +24,7 @@ ARG mam_fp_image=MAMMTFP761${mam_fp}IMRepo.zip
 #ENV DB2_FP_IMAGE=v${db_ver}.${db_fp}_linuxx64_server_t.tar.gz
 
 COPY check.sh packages.list /
-#COPY *.zip *.jar *.gz /images/
-COPY *.zip *.jar /images/
+COPY *.zip *.jar M*.gz /images/
 
 # Copy backup files
 COPY backup/* /backup/
