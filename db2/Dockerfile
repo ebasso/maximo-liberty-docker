@@ -11,7 +11,7 @@
 # limitations under the License.
 ARG buildver=7.6.1.2
 ARG namespace=maximo-liberty
-FROM ${namespace}/images:${buildver}
+FROM ${namespace}/db2images:${buildver}
 
 FROM ubuntu:18.04
 
