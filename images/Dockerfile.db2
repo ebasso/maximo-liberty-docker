@@ -20,7 +20,7 @@ ENV DB2_IMAGE=DB2_AWSE_REST_Svr_${db_ver}_Lnx_86-64.tar.gz
 ENV DB2_FP_IMAGE=v${db_ver}.${db_fp}_linuxx64_server_t.tar.gz
 
 COPY checkdb2.sh packages.list.db2 /
-COPY *.gz /images/
+COPY ${DB2_IMAGE} ${DB2_FP_IMAGE} /images/
 
 # Copy backup files
 COPY backup/* /backup/
