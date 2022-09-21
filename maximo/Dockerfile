@@ -61,13 +61,15 @@ ENV DB2_PATH=/home/ctginst1/sqllib  \
     USER_MANAGEMENT=${user_management}
 
 WORKDIR /tmp
+# Install required packages
+RUN apt-get update && apt-get install -y netcat wget gettext inetutils-ping \
+    dos2unix apache2 xmlstarlet && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
     && mv wait-for-it.sh /usr/local/bin && chmod +x /usr/local/bin/wait-for-it.sh
 
 USER root
 # Install IBM Installation Manager - agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
-RUN mkdir /Install_Mgr 
 COPY --from=0 /Install_Mgr /Install_Mgr/
 RUN /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
     && rm -rf /Install_Mgr
@@ -75,20 +77,8 @@ RUN /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
 ## Update Installation Manager
 RUN if [ "${update_im}" = "yes" ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl install com.ibm.cic.agent; fi
 
-#ENV TEMP /tmp
-WORKDIR /tmp
-
-# Install required packages
-RUN apt-get update && apt-get install -y netcat wget gettext inetutils-ping \
-    dos2unix apache2 xmlstarlet && rm -rf /var/lib/apt/lists/*
-
-## Install Maximo middleware and installer
-#RUN mkdir /Launchpad
-WORKDIR /Launchpad
-
 ## Install Maximo V7.6.1
-
-# Remove z from tar command because file is not gzipped despite having gz extension
+WORKDIR /Launchpad
 COPY --from=0 /Launchpad /Launchpad/
 RUN /opt/IBM/InstallationManager/eclipse/tools/imcl \
     -input /Launchpad/SilentResponseFiles/Unix/ResponseFile_MAM_Install_Unix.xml \
