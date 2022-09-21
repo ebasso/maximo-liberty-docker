@@ -60,15 +60,17 @@ ENV DB2_PATH=/home/ctginst1/sqllib  \
     ENABLE_DEMO_DATA=${enable_demo_data} \ 
     USER_MANAGEMENT=${user_management}
 
-WORKDIR /tmp
+USER root
+
 # Install required packages
 RUN apt-get update && apt-get install -y netcat wget gettext inetutils-ping \
     dos2unix apache2 xmlstarlet && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /tmp
+
 RUN wget -q https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
     && mv wait-for-it.sh /usr/local/bin && chmod +x /usr/local/bin/wait-for-it.sh
 
-USER root
 # Install IBM Installation Manager - agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
 COPY --from=0 /Install_Mgr /Install_Mgr/
 RUN /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
