@@ -13,34 +13,31 @@ FROM busybox
 
 LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
-RUN mkdir /images
-WORKDIR /images
-
-COPY check.sh /
-COPY packages.list /
-
-COPY *.zip *.jar *.gz /images/
-
-RUN chmod +x /check.sh && /check.sh -C /images
-
-# Copy backup files
-RUN mkdir /backup
-COPY backup/* /backup/
-
-# Unpack the Db2 packages
 ARG db_ver=11.1
 ARG db_fp
-ENV DB2_IMAGE=DB2_AWSE_REST_Svr_${db_ver}_Lnx_86-64.tar.gz
-ENV DB2_FP_IMAGE=v${db_ver}.${db_fp}_linuxx64_server_t.tar.gz
-RUN mkdir /db2 && tar zxpf /images/${DB2_IMAGE} -C /db2
-RUN mkdir /db2fp && tar zxpf /images/${DB2_FP_IMAGE} -C /db2fp
-
-# Unpack the IIM packages
 ARG im_image=agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
-RUN mkdir /Install_Mgr && unzip -q ${im_image} -d /Install_Mgr
-
 ARG mam_image=MAM_7.6.1.0_LINUX64.tar.gz
 ARG mam_fp=2
 ARG mam_fp_image=MAMMTFP761${mam_fp}IMRepo.zip
 
+ENV DB2_IMAGE=DB2_AWSE_REST_Svr_${db_ver}_Lnx_86-64.tar.gz
+ENV DB2_FP_IMAGE=v${db_ver}.${db_fp}_linuxx64_server_t.tar.gz
+
+COPY check.sh /
+COPY packages.list /
+COPY *.zip *.jar *.gz /images/
+
+# Copy backup files
+COPY backup/* /backup/
+
+RUN chmod +x /check.sh && /check.sh -C /images
+
+# Unpack the Db2 packages
+RUN mkdir /db2 && tar zxpf /images/${DB2_IMAGE} -C /db2
+RUN mkdir /db2fp && tar zxpf /images/${DB2_FP_IMAGE} -C /db2fp
+
+# Unpack the IIM packages
+RUN mkdir /Install_Mgr && unzip -q ${im_image} -d /Install_Mgr
+
+# Unpack the Maximo packages
 RUN mkdir /Launchpad && tar xpf /images/${mam_image} -C /Launchpad
