@@ -25,6 +25,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 RUN wget -q https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
     && mv wait-for-it.sh /usr/local/bin && chmod +x /usr/local/bin/wait-for-it.sh
+    
 USER 1001
 
 WORKDIR /tmp

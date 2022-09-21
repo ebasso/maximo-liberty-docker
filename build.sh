@@ -200,15 +200,16 @@ if [[ ${DEPLOY_ON_BUILD} -eq -1 ]]; then
   DEPLOY_ON_BUILD=1
 fi
 
-echo "Start building..."
 # Build base image container
 image_container_id=`${DOCKER} images -q --no-trunc ${NAME_SPACE}/images:${MAXIMO_VER}`
 if [[ ${PRESERVE_IMAGE_CONTAINER} -eq 0 || -z "${image_container_id}" ]]; then
+  echo "[Start a image hosting container] ********************************************************************"
   build "images" "${MAXIMO_VER}" "images" "Maximo Liberty Docker image Container"
 fi
 
 # Build IBM Db2 Advanced Workgroup Edition image
 if [[ ${SKIP_DB} -eq 0 ]]; then
+  echo "[Start a DB2 image hosting container] ********************************************************************"
   build "db2images" "${MAXIMO_VER}" "images" "DB2 Docker image Container" "--file images/Dockerfile.db2"
   build "db2-intermediate" "${MAXIMO_VER}" "db2" "IBM Db2 Advanced Workgroup Server Edition - Intermediate image"
 fi
@@ -228,44 +229,54 @@ if [[ ${USE_CUSTOM_IMAGE} -eq 1 ]]; then
   build "maximo" "${MAXIMO_VER}" "custom" "IBM Maximo Asset Management Custom" "${DEPLOY_ON_BUILD_ARG}"
 else
   # Build IBM Maximo Asset Management image
+  echo "[Build IBM Maximo Asset Management image] ********************************************************************"
   build "maximo" "${MAXIMO_VER}" "maximo" "IBM Maximo Asset Management" "--build-arg fp=${FP_VER} --build-arg base_maximo_build=${INTERMEDIATE_BUILD_IMAGE_ID} ${DEPLOY_ON_BUILD_ARG}"
 fi
 push "maximo" "${MAXIMO_VER}" "IBM Maximo Asset Management" 
 
 # Build IBM Db2 Advanced Workgroup Edition image
 if [[ ${SKIP_DB} -eq 0 ]]; then
+  echo "[Build IBM Db2 Advanced Workgroup Edition image] ********************************************************************"
   build "db2" "${MAXIMO_VER}" "maxdb" "IBM Db2 Advanced Workgroup Server Edition"
   push "db2" "${MAXIMO_VER}" "IBM Db2 Advanced Workgroup Server Edition" 
 fi
 
 # Build IBM WebSphere Liberty base image
+echo "[Build IBM WebSphere Liberty base image] ********************************************************************"
 build "liberty" "${WAS_VER}" "liberty" "IBM WebSphere Application Server Liberty base"
 
 # Build IBM WebSphere Liberty JMS server image
+echo "[Build IBM WebSphere Liberty JMS server image] ********************************************************************"
 build "jmsserver" "${WAS_VER}" "jmsserver" "IBM WebSphere Application Server Liberty JMS server"
 push "jmsserver" "${WAS_VER}" "IBM WebSphere Application Server Liberty JMS server"
 
 # Build IBM WebSphere Liberty for Maximo UI image
+echo "[Build IBM WebSphere Liberty for Maximo UI image] ********************************************************************"
 build "maximo-ui" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo UI" "--build-arg maximoapp=maximo-ui"
 push "maximo-ui" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo UI"
 
 # Build IBM WebSphere Liberty for Maximo Crontask image
+echo "[Build IBM WebSphere Liberty for Maximo Crontask image] ********************************************************************"
 build "maximo-cron" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo Crontask" "--build-arg maximoapp=maximo-cron"
 push "maximo-cron" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo Crontask"
 
 # Build IBM WebSphere Liberty for Maximo API image
+echo "[Build IBM WebSphere Liberty for Maximo API image] ********************************************************************"
 build "maximo-api" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo API" "--build-arg maximoapp=maximo-api"
 push "maximo-api" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo API"
 
 # Build IBM WebSphere Liberty for Maximo Report Server image
+echo "[Build IBM WebSphere Liberty for Maximo Report Server image] ********************************************************************"
 build "maximo-report" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo Reporting" "--build-arg maximoapp=maximo-report"
 push "maximo-report" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo Reporting"
 
 # Build IBM WebSphere Liberty for Maximo MEA image
+echo "[Build IBM WebSphere Liberty for Maximo MEA image] ********************************************************************"
 build "maximo-mea" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo MEA" "--build-arg maximoapp=maximo-mea"
 push "maximo-mea" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo MEA"
 
 # Build IBM WebSphere Liberty for JMS Consumer image
+echo "[Build IBM WebSphere Liberty for JMS Consumer image] ********************************************************************"
 build "maximo-jmsconsumer" "${MAXIMO_VER}" "maxapp" "IBM WebSphere Application Server Liberty for Maximo JMS Consumer" "--build-arg maximoapp=maximo-jmsconsumer"
 push "maximo-jmsconsumer" "${MAXIMO_VER}" "IBM WebSphere Application Server Liberty for Maximo JMS Consumer"
 
@@ -274,13 +285,14 @@ push "maximo-jmsconsumer" "${MAXIMO_VER}" "IBM WebSphere Application Server Libe
 
 # Cleanup Maximo Image build
 if [[ ${PRUNE} -eq 1 ]]; then
-  echo "Cleanup intermediate images."
+  echo "[Cleanup intermediate images] ********************************************************************"
   list=$(docker images -q -f "dangling=true" -f "label=autodelete=true")
   if [ -n "${list}" ]; then
       docker image rm $list
   fi 
   
   if [[ ${PRESERVE_IMAGE_CONTAINER} -eq 0 ]]; then
+     echo "[Remove intermediate images] ********************************************************************"
     remove "images" "${MAXIMO_VER}" "Maximo Liberty Docker image container"
   fi
 fi
