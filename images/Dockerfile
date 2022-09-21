@@ -36,7 +36,7 @@ RUN chmod +x /check.sh && /check.sh -C /images
 #RUN mkdir /db2fp && tar zxpf /images/${DB2_FP_IMAGE} -C /db2fp
 
 # Unpack the IIM packages
-RUN mkdir /Install_Mgr && unzip -q ${im_image} -d /Install_Mgr
+RUN mkdir /Install_Mgr && unzip -q /images/${im_image} -d /Install_Mgr
 
 # Unpack the Maximo packages
 RUN mkdir /Launchpad && tar xpf /images/${mam_image} -C /Launchpad
