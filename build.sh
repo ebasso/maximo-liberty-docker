@@ -50,7 +50,8 @@ function remove {
   fi
 }
 
-# Usage: build "tag name" "version" "target directory name" "product name"
+# Usage: build "tag name" "version" "target directory name" "product name" 
+#              ${1}       ${2}      ${3}                    ${4}            ${5} Build Arguments
 function build {
   echo "Building ${4} image ..."
   if [[ ${ADD_LATEST_TAG} -eq 1 ]]; then
