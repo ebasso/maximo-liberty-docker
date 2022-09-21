@@ -55,7 +55,7 @@ COPY --chown=ctginst1:ctggrp1 db2awse.rsp /tmp/
 COPY --from=0 --chown=ctginst1:ctggrp1 /db2 /tmp/db2
 COPY --from=0 --chown=ctginst1:ctggrp1 /db2fp /tmp/db2fp
 
-RUN /tmp/db2/server_awse_o/db2setup -r db2awse.rsp -f nobackup \
+RUN /tmp/db2/server_awse_o/db2setup -r /tmp/db2awse.rsp -f nobackup \
   && ${DB2_PATH}/adm/db2licm -a /tmp/db2/server_awse_o/db2/license/db2awse_o.lic \
   && ${DB2_PATH}/adm/db2licm -l \
   && . ~/sqllib/db2profile && db2stop \
