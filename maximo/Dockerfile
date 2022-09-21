@@ -42,15 +42,28 @@ ARG enable_demo_data=no
 ARG use_app_server_security=no
 ARG user_management=mixed
 
-ENV DB2_PATH /home/ctginst1/sqllib
-ENV MAXDB ${db_alias}
-ENV MAXDB_SERVICE_PORT ${db_port}
-ENV BACKUP_DIR /work/backup
-ENV USE_APP_SERVER_SECURITY ${use_app_server_security}
-ENV JMS_ENABLED ${enable_jms}
+ENV DB2_PATH=/home/ctginst1/sqllib  \    
+    MAXDB=${db_alias}               \ 
+    MAXDB_SERVICE_PORT=${db_port}   \ 
+    BACKUP_DIR=/work/backup         \ 
+    USE_APP_SERVER_SECURITY=${use_app_server_security} \ 
+    JMS_ENABLED=${enable_jms}       \ 
+    TEMP=/tmp                       \ 
+    BYPASS_PRS=True                 \ 
+    MAM_FP_IMAGE=MAMMTFP761${fp}IMRepo.zip \
+    MAXIMO_DIR=/maximo              \ 
+    MAXDB=${db_alias}               \ 
+    DB_VENDOR=DB2                   \ 
+    DB_TABLE_SPACE=MAXDATA          \ 
+    DB_TEMP_SPACE=MAXTEMP           \ 
+    DB_INDEX_SPACE=MAXINDEX         \ 
+    ENABLE_DEMO_DATA=${enable_demo_data} \ 
+    USER_MANAGEMENT=${user_management}
 
-ENV TEMP /tmp
 WORKDIR /tmp
+
+RUN wget -q https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+    && mv wait-for-it.sh /usr/local/bin && chmod +x /usr/local/bin/wait-for-it.sh
 
 USER root
 # Install IBM Installation Manager - agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
@@ -62,7 +75,7 @@ RUN /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
 ## Update Installation Manager
 RUN if [ "${update_im}" = "yes" ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl install com.ibm.cic.agent; fi
 
-ENV TEMP /tmp
+#ENV TEMP /tmp
 WORKDIR /tmp
 
 # Install required packages
@@ -70,11 +83,11 @@ RUN apt-get update && apt-get install -y netcat wget gettext inetutils-ping \
     dos2unix apache2 xmlstarlet && rm -rf /var/lib/apt/lists/*
 
 ## Install Maximo middleware and installer
-RUN mkdir /Launchpad
+#RUN mkdir /Launchpad
 WORKDIR /Launchpad
 
 ## Install Maximo V7.6.1
-ENV BYPASS_PRS=True
+
 # Remove z from tar command because file is not gzipped despite having gz extension
 COPY --from=0 /Launchpad /Launchpad/
 RUN /opt/IBM/InstallationManager/eclipse/tools/imcl \
@@ -85,7 +98,7 @@ RUN /opt/IBM/InstallationManager/eclipse/tools/imcl \
 # Install Maximo V7.6.1 feature pack
 RUN mkdir -p /work
 WORKDIR /work
-ENV MAM_FP_IMAGE MAMMTFP761${fp}IMRepo.zip
+
 COPY --from=0 /images/${MAM_FP_IMAGE} /work/
 RUN if [ "${install_fp}" = "yes" ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl install \
     com.ibm.tivoli.tpae.base.tpae.main -repositories /work/${MAM_FP_IMAGE} \
@@ -97,29 +110,17 @@ RUN if [ "${install_fp}" = "yes" ]; then /opt/IBM/InstallationManager/eclipse/to
 
 RUN dos2unix /opt/IBM/SMP/maximo/deployment/was-liberty-default/*.sh
 
-RUN mkdir /work/ldap-config
+#RUN mkdir /work/ldap-config
+COPY *.sh *.xml /work/
 COPY ldap-config /work/ldap-config/
-COPY *.sh /work/
-COPY *.xml /work/
+#COPY *.xml /work/
 RUN chmod +x /work/*.sh
 RUN /work/buildwars.sh
 
 # RUN mkdir /opt/IBM/SMP/maximo/tools/maximo/en/liberty
 # COPY liberty.dbc /opt/IBM/SMP/maximo/tools/maximo/en/liberty/
 
-RUN wget -q https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
-    && mv wait-for-it.sh /usr/local/bin && chmod +x /usr/local/bin/wait-for-it.sh
-
 COPY maximo-config.properties.template /opt/
-
-ENV MAXIMO_DIR /maximo
-ENV MAXDB ${db_alias}
-ENV DB_VENDOR DB2
-ENV DB_TABLE_SPACE MAXDATA
-ENV DB_TEMP_SPACE MAXTEMP
-ENV DB_INDEX_SPACE MAXINDEX
-ENV ENABLE_DEMO_DATA ${enable_demo_data}
-ENV USER_MANAGEMENT ${user_management}
 
 RUN if [ "${deploy_db_on_build}" = "no" ]; then mkdir -p ${BACKUP_DIR} && touch ${BACKUP_DIR}/placeholder ; else /work/startinstall.sh ; fi
 
