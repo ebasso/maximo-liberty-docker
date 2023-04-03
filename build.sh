@@ -14,7 +14,7 @@
 
 source .env
 
-MAXIMO_VER="${ENV_MAXIMO_VER:-7.6.1.2}"
+MAXIMO_VER="${ENV_MAXIMO_VER:-7.6.1.3}"
 FP_VER="${ENV_FP_VER:-2}"
 WAS_VER="${ENV_WAS_VER:-22.0.0.9-kernel-java8-ibmjava}"
 PROXY_VER="${PROXY_VER:-1.8}"
