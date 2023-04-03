@@ -9,7 +9,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ARG buildver=7.6.1.2
+ARG buildver=7.6.1.3
 ARG base_maximo_build=ubuntu:18:04
 ARG namespace=maximo-liberty
 
@@ -20,7 +20,7 @@ FROM ${base_maximo_build}
 LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 ARG update_im=no
-ARG fp=2
+ARG fp=3
 ARG db_alias=MAXDB76
 ARG enable_jms=yes
 ARG install_fp=yes
