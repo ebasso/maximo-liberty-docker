@@ -15,10 +15,10 @@ LABEL org.opencontainers.image.authors="nishi2go@gmail.com,ebasso@ebasso.net"
 
 #ARG db_ver=11.1
 #ARG db_fp
-ARG im_image=agent.installer.linux.gtk.x86_64_1.9.2002.20220323_1321.zip
+ARG im_image=agent.installer.linux.gtk.x86_64_1.9.2.2.zip
 ARG mam_image=MAM_7.6.1.0_LINUX64.tar.gz
-ARG mam_fp=2
-ARG mam_fp_image=MAMMTFP761${mam_fp}IMRepo.zip
+ARG mam_fp=3
+ARG mam_fp_image=MAMMTFP761${mam_fp}IMRepo-signed.zip
 
 #ENV DB2_IMAGE=DB2_AWSE_REST_Svr_${db_ver}_Lnx_86-64.tar.gz
 #ENV DB2_FP_IMAGE=v${db_ver}.${db_fp}_linuxx64_server_t.tar.gz
