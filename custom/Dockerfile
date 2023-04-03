@@ -12,7 +12,7 @@
 
 # The script is used for customizing Maximo image e.g. to install Industry Solutions, your custom java classes and etc.
 
-ARG buildver=7.6.1.2
+ARG buildver=7.6.1.3
 ARG deploy_db_on_build=yes
 ARG namespace=maximo-liberty
 
